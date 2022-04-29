@@ -45,32 +45,32 @@ def step_1(file_name, column, parent_path):
     ###volume###
     #Elution buffer
     elution_per_tube = float(ws["E92"].value)
-    ws['E92'] = elution_per_tube / column
+    ws['E92'] = elution_per_tube * column
     elution_total = float(ws["E93"].value)
-    ws['E93'] = elution_total / column
+    ws['E93'] = elution_total * column
     #Buffer PM
     buffer_pm = float(ws["E105"].value)
-    ws['E105'] = buffer_pm / column
+    ws['E105'] = buffer_pm * column
     #Buffer PE
     buffer_pe_per_tube = float(ws["E107"].value)
-    ws['E107'] = buffer_pe_per_tube / column
+    ws['E107'] = buffer_pe_per_tube * column
     buffer_pe_total = float(ws["E108"].value)
-    ws['E108'] = buffer_pe_total / column
+    ws['E108'] = buffer_pe_total * column
     #GXL PCR pre-mix
     template_dna = float(ws["E111"].value)
-    ws['E111'] = template_dna / column
+    ws['E111'] = template_dna * column
     reverse_primer =  float(ws["E112"].value)
-    ws['E112'] = reverse_primer / column
+    ws['E112'] = reverse_primer * column
     dNTP =  float(ws["E113"].value)
-    ws['E113'] = dNTP / column
+    ws['E113'] = dNTP * column
     fiveX_GXL_buffer =  float(ws["E114"].value)
-    ws['E114'] = fiveX_GXL_buffer / column
+    ws['E114'] = fiveX_GXL_buffer * column
     GXL_polymerase =  float(ws["E115"].value)
-    ws['E115'] = GXL_polymerase / column
+    ws['E115'] = GXL_polymerase * column
     DW =  float(ws["E116"].value)
-    ws['E116'] = DW / column
+    ws['E116'] = DW * column
     GXL_total =  float(ws["E117"].value)
-    ws['E117'] = GXL_total / column
+    ws['E117'] = GXL_total * column
     ###tube###
         #no tube rules
     ###save excel###
@@ -86,28 +86,28 @@ def step_2(file_name, column, parent_path):
     ###volume###
     #elution buffer
     elution_buffer_per_tube =  float(ws["E92"].value)
-    ws['E92'] = elution_buffer_per_tube / column
+    ws['E92'] = elution_buffer_per_tube * column
     elution_buffer_total =  float(ws["E93"].value)
-    ws['E93'] = elution_buffer_total / column
+    ws['E93'] = elution_buffer_total * column
     #enzyme cut
     tenX_green_fd_buffer =  float(ws["E96"].value)
-    ws['E96'] = tenX_green_fd_buffer / column
+    ws['E96'] = tenX_green_fd_buffer * column
     spel =  float(ws["E97"].value)
-    ws['E97'] = spel / column
+    ws['E97'] = spel * column
     DW =  float(ws["E98"].value)
-    ws['E98'] = DW / column
+    ws['E98'] = DW * column
     enzyme_per_tube =  float(ws["E99"].value)
-    ws['E99'] = enzyme_per_tube / column
+    ws['E99'] = enzyme_per_tube * column
     enzyme_total =  float(ws["E100"].value)
-    ws['E100'] = enzyme_total / column
+    ws['E100'] = enzyme_total * column
     #buffer PM
     buffer_pm =  float(ws["E105"].value)
-    ws['E105'] = buffer_pm / column
+    ws['E105'] = buffer_pm * column
     #buffer PE
     buffer_pe_per_trough =  float(ws["E107"].value)
-    ws['E107'] = buffer_pe_per_trough / column
+    ws['E107'] = buffer_pe_per_trough * column
     buffer_pe_total =  float(ws["E108"].value)
-    ws['E108'] = buffer_pe_total / column
+    ws['E108'] = buffer_pe_total * column
     ###tube###
     if 1 <= column <= 4:
         ws['F24'] = " "
@@ -183,32 +183,39 @@ def step_3(file_name, column, parent_path):
     #DNA#
     #5X KCM
     fiveX_KCM_per_tube =  float(ws["E92"].value)
-    ws['E92'] = fiveX_KCM_per_tube / column
+    ws['E92'] = fiveX_KCM_per_tube * column
     fiveX_KCM_total =  float(ws["E93"].value)
-    ws['E93'] = fiveX_KCM_total / column
+    ws['E93'] = fiveX_KCM_total * column
     #E.coli competent cell
     ecoli_per_tube =  float(ws["E95"].value)
-    ws['E95'] = ecoli_per_tube / column
+    ws['E95'] = ecoli_per_tube * column
     ecoli_total =  float(ws["E96"].value)
-    ws['E96'] = ecoli_total / column
+    ws['E96'] = ecoli_total * column
     #ligation
     tenX_ligation =  float(ws["E99"].value)
-    ws['E99'] = tenX_ligation / column
+    ws['E99'] = tenX_ligation * column
     T4_ligase =  float(ws["E100"].value)
-    ws['E100'] = T4_ligase / column
+    ws['E100'] = T4_ligase * column
     DW_tube =  float(ws["E101"].value)
-    ws['E101'] = DW_tube / column
-    ligation_pre_mix_per_tube =  float(ws["E102"].value)
-    ws['E102'] = ligation_pre_mix_per_tube / column
+    ws['E101'] = DW_tube * column
+    if 1 <= column <= 4:
+        ligation_pre_mix_per_tube =  float(ws["E102"].value)
+        ws['E102'] = ligation_pre_mix_per_tube * column / 1
+    elif 5 <= column <= 8:
+        ligation_pre_mix_per_tube =  float(ws["E102"].value)
+        ws['E102'] = ligation_pre_mix_per_tube * column / 2
+    elif 9 <= column:
+        ligation_pre_mix_per_tube =  float(ws["E102"].value)
+        ws['E102'] = ligation_pre_mix_per_tube * column / 4
     ligation_pre_mix_total =  float(ws["E103"].value)
-    ws['E103'] = ligation_pre_mix_total / column
+    ws['E103'] = ligation_pre_mix_total * column
     #d.w.
     DW_trough =  float(ws["E110"].value)
-    ws['E110'] = DW_trough / column
+    ws['E110'] = DW_trough * column
     #CELL#
     #LB medium
     LB_medium =  float(ws["E187"].value)
-    ws['E187'] = LB_medium / column
+    ws['E187'] = LB_medium * column
     ###save excel###
     workbook.save(workbook_path)
 
@@ -222,10 +229,10 @@ def step_4(file_name, column, parent_path):
     ###volume###
     #dw
     dw = float(ws["E58"].value)
-    ws['E58'] = dw / column
+    ws['E58'] = dw * column
     #lb_medium
     lb_medium = float(ws["E61"].value)
-    ws['E61'] = lb_medium / column
+    ws['E61'] = lb_medium * column
     ###tube###
         #no tube rules
     ###save excel###
